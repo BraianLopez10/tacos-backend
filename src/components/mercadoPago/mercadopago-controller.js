@@ -115,7 +115,7 @@ async function webhook (req, res) {
             status_detail: 'accredited'
           }
         }
-        const pedidoUpdated = await storePedido.updateBy(refExternal , dataUpdated)
+        const pedidoUpdated = await storePedido.updateBy(refExternal, refExternal, dataUpdated)
         console.log(pedidoUpdated)
       } catch (err) {
         console.log(err)

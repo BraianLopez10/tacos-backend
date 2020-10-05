@@ -24,8 +24,8 @@ async function update (slug, data) {
   return await Model.updateOne({ slug }, data)
 }
 
-async function updateBy (filter , data ) {
-  return await Model.findOneAndUpdate({[filter]:filter} , data)
+async function updateBy (campo , valor , data ) {
+  return await Model.findOneAndUpdate({ [campo] : valor} , data)
 }
 
 module.exports = {
