@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === 'DEVELOPMENT') {
   console.log('DEVELOPMENT')
   uri = 'mongodb://database:27017/tacos'
 } else {
-  uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.1k17z.mongodb.net/taco?retryWrites=true&w=majority`
+  uri = process.env.MONGO_URI
 }
 mongoose.connect(uri, {
   useNewUrlParser: true,
