@@ -4,6 +4,7 @@ const logger = require('morgan')
 const cors = require('cors')
 const apiRouter = require('./routes')
 const app = express()
+
 require('./db')
 
 // Uses

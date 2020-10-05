@@ -24,10 +24,15 @@ async function update (slug, data) {
   return await Model.updateOne({ slug }, data)
 }
 
+async function updateBy (filter , data ) {
+  return await Model.findOneAndUpdate({[filter]:filter} , data)
+}
+
 module.exports = {
   getAll,
   getBy,
   create,
   deleteOne,
-  update
+  update,
+  updateBy
 }

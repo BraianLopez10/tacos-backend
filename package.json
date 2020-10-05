@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "nodemon -r dotenv/config index.js"
+        "start": "nodemon index.js"
     },
     "dependencies": {
         "aws-sdk": "^2.741.0",

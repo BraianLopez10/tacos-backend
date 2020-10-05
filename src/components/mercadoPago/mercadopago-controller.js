@@ -6,6 +6,7 @@ const MpServicesInstance = new MpServices()
 const storePedido = require('../pedido/store')
 const storeCombo = require('../combo/store')
 const storeProd = require('../producto/store')
+const store = require('../pedido/store')
 
 async function checkPedido (comboSlug, extras, total, comboValor) {
   try {
@@ -103,17 +104,18 @@ async function webhook (req, res) {
   const { type } = req.query
 
   if (type === 'payment' && paymentId) {
-    const payment = await this.MpServices.getPayment(paymentId)
+    const payment = await MpServicesInstance.getPayment(paymentId)
     if (payment) {
       const refExternal = payment.response.external_reference
       console.log('ref', refExternal)
       try {
-        const pedidoUpdated = await this.ModelPedido.findOneAndUpdate({ refExternal }, {
+        let dataUpdated = {
           info_pago: {
             status: 'approved',
             status_detail: 'accredited'
           }
-        })
+        }
+        const pedidoUpdated = await storePedido.updateBy(refExternal , dataUpdated)
         console.log(pedidoUpdated)
       } catch (err) {
         console.log(err)
