@@ -1,10 +1,10 @@
 const express = require('express')
-require('./db')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const apiRouter = require('./routes')
 const app = express()
+require('./db')
 
 // Uses
 app.use(cors())
