@@ -108,7 +108,7 @@ async function webhook (req, res) {
       const refExternal = payment.response.external_reference
       console.log('ref', refExternal)
       try {
-        const pedidoUpdated = await this.ModelPedido.findOneAndUpdate({ refExternal: 'c9a85e94' }, {
+        const pedidoUpdated = await this.ModelPedido.findOneAndUpdate({ refExternal }, {
           info_pago: {
             status: 'approved',
             status_detail: 'accredited'

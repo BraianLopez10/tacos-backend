@@ -54,7 +54,7 @@ async function create (req, res) {
   }
   try {
     const newProduct = await store.create(product)
-    return response.success(req, res, newProduct, 201)
+    return response.success(req, res,  201, newProduct,)
   } catch (err) {
     console.log(err)
     return response.error(req, res)
