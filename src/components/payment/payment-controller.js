@@ -6,7 +6,8 @@ const MpServicesInstance = new MpServices()
 const storePedido = require('../pedido/store')
 const storeCombo = require('../combo/store')
 const storeProd = require('../producto/store')
-const store = require('../pedido/store')
+const pedidoModel = require('../pedido/pedido-model')
+const { update } = require('../pedido/pedido-model')
 
 async function checkPedido (comboSlug, extras, total, comboValor) {
   try {
@@ -99,11 +100,8 @@ async function getLinkMp (req, res) {
     }
   }
 }
-async function webhook (req, res) {
-  const paymentId = req.query['data.id']
-  const { type } = req.query
 
-  if (type === 'payment' && paymentId) {
+async function updatePedido( paymentId ) { 
     const payment = await MpServicesInstance.getPayment(paymentId)
     if (payment) {
       const refExternal = payment.response.external_reference
@@ -112,15 +110,22 @@ async function webhook (req, res) {
         let dataUpdated = {
           info_pago: {
             status: 'approved',
-            status_detail: 'accredited'
           }
         }
-        const pedidoUpdated = await storePedido.updateBy(refExternal, refExternal, dataUpdated)
-        console.log(pedidoUpdated)
+        const pedidoUpdated = await storePedido.updateBy('refExternal', refExternal, dataUpdated)
+        console.log('DONE' , pedidoUpdated)
       } catch (err) {
         console.log(err)
       }
     }
+}
+
+async function webhook (req, res) {
+  updatePedido(paymentId=0)
+  const paymentId = req.query['data.id']
+  const { type } = req.query
+  if (type === 'payment' && paymentId) {
+    updatePedido(paymentId)
   }
   return res.status(200).send()
 }

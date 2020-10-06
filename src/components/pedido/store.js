@@ -5,8 +5,8 @@ async function getAll () {
   return items
 }
 
-async function getBy (slug) {
-  const item = await Model.findOne({ slug })
+async function getBy (campo , valor ) {
+  const item = await Model.findOne({ [campo] : valor })
   return item
 }
 
@@ -25,7 +25,7 @@ async function update (slug, data) {
 }
 
 async function updateBy (campo , valor , data ) {
-  return await Model.findOneAndUpdate({ [campo] : valor} , data)
+  return await Model.findOneAndUpdate({ [campo] : valor} , {...data})
 }
 
 module.exports = {
