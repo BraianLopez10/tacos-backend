@@ -90,7 +90,7 @@ class MpServices {
       },
       back_urls: {
         // declaramos las urls de redireccionamiento
-        success: 'http://192.168.0.75:3000/carrito/pago',
+        success: 'http://localhost:3000/carrito/pago',
         // url que va a redireccionar si sale todo bien
         pending: 'https://localhost:3000.com/pending',
         // url a la que va a redireccionar si decide pagar en efectivo por ejemplo
@@ -100,7 +100,7 @@ class MpServices {
       external_reference: externalReferences,
       marketplace: 'COMIDAS TACOS MEXICO',
       notification_url:
-                'https://api-tacos.herokuapp.com/api/v1/mp/webhook?source_news=webhooks',
+                'https://api-tacos.herokuapp.com/api/v1/payment/webhook?source_news=webhooks',
       // declaramos nuestra url donde recibiremos las notificaciones
       auto_return: 'approved'
       // si la compra es exitosa automaticamente redirige a "success" de back_urls
