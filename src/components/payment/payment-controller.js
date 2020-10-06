@@ -121,11 +121,14 @@ async function updatePedido( paymentId ) {
 }
 
 async function webhook (req, res) {
-  updatePedido(paymentId=0)
-  const paymentId = req.query['data.id']
-  const { type } = req.query
-  if (type === 'payment' && paymentId) {
-    updatePedido(paymentId)
+  try{
+    const paymentId = req.query['data.id']
+    const { type } = req.query
+    if (type === 'payment' && paymentId) {
+      updatePedido(paymentId)
+    }
+  }catch{
+
   }
   return res.status(200).send()
 }
