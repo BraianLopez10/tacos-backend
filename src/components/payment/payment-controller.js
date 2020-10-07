@@ -107,7 +107,7 @@ async function updatePedido(paymentId) {
         try {
             let dataUpdated = {
                 info_pago: {
-                    status: 'approved',
+                    status: payment.response.status,
                 },
             }
             await storePedido.updateBy('refExternal', refExternal, dataUpdated)
