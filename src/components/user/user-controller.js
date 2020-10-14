@@ -2,6 +2,7 @@ const store = require('./store')
 const response = require('../../routes/response')
 const bcrypt = require('bcrypt')
 const jwt = require('../../auth/genToken')
+
 async function login (req, res) {
   const username = req.body.username
   const password = req.body.password
@@ -16,8 +17,8 @@ async function login (req, res) {
         if (!result) {
           return response.error(req, res, 400, 'Parametros invalidos')
         } else {
+          console.log(user)
           const data = {
-            slug: user.slug,
             username: user.username
           }
           try {

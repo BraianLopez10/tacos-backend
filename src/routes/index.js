@@ -7,12 +7,15 @@ const paymentRoute = require('../components/payment/routes')
 const pedidoRoute = require('../components/pedido/routes')
 const userRoute = require('../components/user/routes')
 
+// Middleware
+const authMiddleware = require('../middlewares/checkauth').checkauth
+
 // COMBOS
 router.use('/combo', comboRoute)
 // PRODUCTOS
 router.use('/producto', productoRoute)
 // PEDIDOS
-router.use('/pedido', pedidoRoute)
+router.use('/pedido', authMiddleware, pedidoRoute)
 // MP
 router.use('/payment', paymentRoute)
 // User

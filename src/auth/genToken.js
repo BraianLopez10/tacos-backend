@@ -6,6 +6,7 @@ function sign (data) {
       const payload = {
         slug: data.slug,
         username: data.username,
+        // iat: Date.now() + 86400
         iat: Date.now() + 86400
       }
       const token = jwt.sign(JSON.stringify(payload), process.env.SECRET_JWT)
