@@ -43,7 +43,7 @@ async function lostPassword (req, res) {
   if (!username || !secret || !password) return response.error(req, res, 400, 'Faltan valores')
 
   if (secret !== process.env.SECRET_RESET_PASS) {
-    return response.error(req, res, 400)
+    return response.error(req, res, 400, 'El secret es erroneo')
   }
 
   // Buscamos al usuario
